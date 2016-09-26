@@ -1,6 +1,9 @@
 #README
 The AWS Slack bot allows you manage your AWS resources directly from Slack and not having to switch between the console and the AWS CLI. Since the bot is based on a serverless architecture using AWS lambda, it can scale easily. Currently it supports EC2 , S3 and Cloudformation. 
 
+
+![alt tag](https://github.com/samx18/awsBot/blob/master/awsBot.jpg)
+
 ## Requirements 
 * AWS account with admin access to the following
 	* IAM

@@ -7,7 +7,7 @@ The AWS Slack bot allows you manage your AWS resources directly from Slack and n
 
 Once deployed, you can get additional usage instructions by saying 
 
-```AWS help usage
+	AWS help usage
 
  
 ## Create Lambda Functions

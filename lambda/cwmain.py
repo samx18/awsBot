@@ -11,7 +11,7 @@ from urllib2 import  Request, urlopen, URLError, HTTPError
 # Encrypt the slack token using KMS to prevent unauthorized access.
 ENCRYPTED_HOOK_URL = 'AQECAHgT/MsA4/sL3S5flIV8eLI13GPSUwLOdlMiunWVHtJm/QAAAKcwgaQGCSqGSIb3DQEHBqCBljCBkwIBADCBjQYJKoZIhvcNAQcBMB4GCWCGSAFlAwQBLjARBAxe4oSzOdFIdFOunHYCARCAYMZU9PoYrTUEAkey+GCXqLTTmNpECB2Sh6CY0hwh1b2gV3+0GxRMwtvZiNYltvSXjR2pY2qoxxmXfxH54jzsOBUNOtICPzj4onrmbmd6d4nfMiLtuGUwT1rwctPIHifCKQ=='
 
-SLACK_CHANNEL = 'bot-testing'
+SLACK_CHANNEL = 'bot-testing' # Replace with your channel name
 
 HOOK_URL = "https://" + boto3.client('kms').decrypt(CiphertextBlob=b64decode(ENCRYPTED_HOOK_URL))['Plaintext']
 

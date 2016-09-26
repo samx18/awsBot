@@ -4,6 +4,10 @@ The AWS Slack bot allows you manage your AWS resources directly from Slack and n
 
 ![alt tag](https://github.com/samx18/awsBot/blob/master/assets/awsBot.jpg)
 
+Once deployed, you can get additional usage instructions by saying 
+
+	AWS help usage
+
 ## Requirements 
 * AWS account with admin access to the following
 	* IAM
@@ -15,9 +19,6 @@ The AWS Slack bot allows you manage your AWS resources directly from Slack and n
 	* Cloudformation
 * Slack admin account 
 
-Once deployed, you can get additional usage instructions by saying 
-
-	AWS help usage
 
 ## Create IAM role
 You will need to create a custom IAM role for your lambda functions.  Use IAM to create a new role and attach the following policies 

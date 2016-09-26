@@ -25,19 +25,22 @@ You will need to create a custom IAM role for your lambda functions.  Use IAM to
 
 You will also need a custom policy for cloudformation 
 
-`
-`{
-`    "Version": "2012-10-17",
-`    "Statement": [
-`        {
-`            "Effect": "Allow",
-`            "Action": [
-`                "cloudformation:*"
-`            ],
-`            "Resource": "*"
-`        }
-`    ]
-`}
+```
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudformation:*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+```
 
 ## Create Lambda Functions
 
@@ -80,7 +83,9 @@ Next we will create a key to encrypt both the token and the incoming web hook UR
 
 * Go to AWS KMS and create a new KMS key
 * Encrypt the token and the incoming URL via the AWS CLI using the key created above
-	$ aws kms encrypt --key-id alias/<KMS key name> --plaintext "<SLACK_TOKEN / SLACK_HOOK_URL>"
+
+	aws kms encrypt --key-id alias/<KMS key name> --plaintext "<SLACK_TOKEN / SLACK_HOOK_URL>"
+
 * Update the main.py lambda function with the encrypted token
 * Update the cwmain.py lambda function with the encrypted webhook url 
 

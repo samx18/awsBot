@@ -48,11 +48,10 @@ You will also need a custom policy for cloudformation
 
 ## Create Lambda Functions
 
-Use the main.py to create your main lambda function. Choose the Python 2.7 as the language. Since it does not use any external packages other than boto3, you can directly copy paste to the inline editor.
+* Use the lambda/main.py to create your main lambda function. Choose the Python 2.7 as the language. Since it does not use any external packages other than boto3, you can directly copy paste to the inline editor.
+* Use the lambda/cwmain.py to create another lambda function. Again you can copy pate to the inline code editor.
 
-Use the cwmain.py to create another lambda function. Again you can copy pate to the inline code editor.
-
-Note: - You will need to update the slack outgoing url and the token in both the functions. We will do that after encrypting them using KMS.
+Note: - You will need to update the slack token in the lambda/main.py and the webhook url and the channel in the lambda/cwmain.py function. We will do that after encrypting them using KMS.
 
 ## Create API gateway
 

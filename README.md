@@ -83,7 +83,9 @@ Next we will create a key to encrypt both the token and the incoming web hook UR
 
 * Go to AWS KMS and create a new KMS key
 * Encrypt the token and the incoming URL via the AWS CLI using the key created above
+
 	aws kms encrypt --key-id alias/<KMS key name> --plaintext "slack token / incoming url"
+
 * Update the main.py lambda function with the encrypted token
 * Update the cwmain.py lambda function with the encrypted webhook url 
 

@@ -208,7 +208,7 @@ def lambda_handler(event,context):
     assert context
     # Replace this with your encrypted slack token before deploying.
     # Encrypt the slack token using KMS to prevent unauthorized access.
-    ENCRYPTED_EXPECTED_TOKEN = 'AQECAHgT/MsA4/sL3S5flIV8eLI13GPSUwLOdlMiunWVHtJm/QAAAHYwdAYJKoZIhvcNAQcGoGcwZQIBADBgBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDCfTRlU5bV0Mws1yLwIBEIAzjGu4jtdVhJGklyCMBZlwtlzL7ANUYiKak1VxjTvM8ZDuLYx7loYdctKw6By/C/3ZRZQa'  # Enter the base-64 encoded, encrypted Slack command token (CiphertextBlob)
+    ENCRYPTED_EXPECTED_TOKEN = 'AQECAHgT/MsA4/sL3afdhfk;KjlklwopVBkslsQdljhp0kkdBZdf;/kkgBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDCfTRlU5bV0Mws1yLwIBEIAzjGu4jtdVhJGklyCMBZlwtlzL7ANUYiKak1VxjTvM8ZDuLYx7loYdctKw6By/C/3ZRZQa'  # Enter the base-64 encoded, encrypted Slack command token (CiphertextBlob)
     kms = boto3.client('kms')
     expected_token = kms.decrypt(CiphertextBlob=b64decode(ENCRYPTED_EXPECTED_TOKEN))['Plaintext']
     token = event['token']

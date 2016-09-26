@@ -16,7 +16,7 @@ Once deployed, you can get additional usage instructions by saying
 
 	AWS help usage
 
- ## Create IAM role
+## Create IAM role
 You will need to create a custom IAM role for your lambda functions.  Use IAM to create a new role and attach the following policies 
 
 * AmazonS3FullAccess
@@ -84,7 +84,7 @@ Next we will create a key to encrypt both the token and the incoming web hook UR
 * Go to AWS KMS and create a new KMS key
 * Encrypt the token and the incoming URL via the AWS CLI using the key created above
 
-	aws kms encrypt --key-id alias/<KMS key name> --plaintext "<SLACK_TOKEN / SLACK_HOOK_URL>"
+	aws kms encrypt --key-id alias/<KMS key name> --plaintext "slack token / incoming url"
 
 * Update the main.py lambda function with the encrypted token
 * Update the cwmain.py lambda function with the encrypted webhook url 

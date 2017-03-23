@@ -22,13 +22,32 @@ logger.setLevel(logging.INFO)
 def lambda_handler(event, context):
     state = event['detail']['state']
     instance = event['detail']['instance-id']
-    
+
     logger.info("Event: " + str(event))
 
-    slack_message = {
-        'channel': SLACK_CHANNEL,
-        'text': "The instance ` %s ` is now in a ` %s ` state" % (instance,state)
-    }
+    if state == 'pending':
+        slack_message = {
+            'channel': SLACK_CHANNEL,
+            'text': "Initiating startup for instance with ID ` %s `" % (instance)
+        }
+    elif state == 'stopping':
+        slack_message = {
+            'channel': SLACK_CHANNEL,
+            'text': "Initiating the shutdown for instance with ID ` %s `" % (instance)
+        }
+    elif state == 'running':
+        client = boto3.client('ec2',region_name='us-west-2')
+        instanceDetails = client.describe_instances(InstanceIds=[instance])
+        publicIP = instanceDetails['Reservations'][0]['Instances'][0]['NetworkInterfaces'][0]['Association']['PublicIp']
+        slack_message = {
+            'channel': SLACK_CHANNEL,
+            'text': "The instance ` %s ` is now in a ` %s ` state with public IP ` %s `" % (instance,state,publicIP)
+        }
+    else:
+        slack_message = {
+            'channel': SLACK_CHANNEL,
+            'text': "The instance ` %s ` is now in a ` %s ` state" % (instance,state)
+        }
 
     req = Request(HOOK_URL, json.dumps(slack_message))
     try:

@@ -38,11 +38,17 @@ def lambda_handler(event, context):
     elif state == 'running':
         client = boto3.client('ec2',region_name='us-west-2')
         instanceDetails = client.describe_instances(InstanceIds=[instance])
-        publicIP = instanceDetails['Reservations'][0]['Instances'][0]['NetworkInterfaces'][0]['Association']['PublicIp']
-        slack_message = {
-            'channel': SLACK_CHANNEL,
-            'text': "The instance ` %s ` is now in a ` %s ` state with public IP ` %s `" % (instance,state,publicIP)
-        }
+        if 'Association' in instanceDetails['Reservations'][0]['Instances'][0]['NetworkInterfaces'][0]:
+            publicIP = instanceDetails['Reservations'][0]['Instances'][0]['NetworkInterfaces'][0]['Association']['PublicIp']
+            slack_message = {
+                'channel': SLACK_CHANNEL,
+                'text': "The instance ` %s ` is now in a ` %s ` state with public IP ` %s `" % (instance,state,publicIP)
+            }
+        else:
+            slack_message = {
+                'channel': SLACK_CHANNEL,
+                'text': "The instance ` %s ` is now in a ` %s ` state" % (instance,state)
+            }
     else:
         slack_message = {
             'channel': SLACK_CHANNEL,
